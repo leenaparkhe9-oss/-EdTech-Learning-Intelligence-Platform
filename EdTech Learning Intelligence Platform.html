@@ -1,0 +1,423 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>EdTech Learning Intelligence Platform</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: a calm product site where each tile of a mosaic is one skill; three demo sections, one per UX challenge. */
+:root{
+  --bg:#F2F4F1; --surface:#FFFFFF; --ink:#16201D; --muted:#5B6863; --line:#D9DFDA;
+  --accent:#2F4BD8; --accent-soft:#E3E8FB; --on-accent:#FFFFFF;
+  --gold:#B87800; --gold-soft:#FBEFD2; --good:#1F8A5B; --warn:#B7791F; --crit:#C4452F;
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'Figtree','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1513; --surface:#171F1C; --ink:#EAF0EC; --muted:#9AA7A1; --line:#2A3531;
+  --accent:#8EA2FF; --accent-soft:#1E2750; --on-accent:#0F1513;
+  --gold:#F0B84A; --gold-soft:#3A2D10; --good:#4CC38A; --warn:#E5A94B; --crit:#F08A75; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1513; --surface:#171F1C; --ink:#EAF0EC; --muted:#9AA7A1; --line:#2A3531;
+  --accent:#8EA2FF; --accent-soft:#1E2750; --on-accent:#0F1513;
+  --gold:#F0B84A; --gold-soft:#3A2D10; --good:#4CC38A; --warn:#E5A94B; --crit:#F08A75; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--body);padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,3.6vw,2.3rem);font-weight:700;letter-spacing:-.015em}
+h3{font-size:1.1rem;font-weight:500}
+p{margin:0}
+.label{font:500 .72rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button{font:inherit;color:inherit;cursor:pointer}
+.btn{background:var(--accent);color:var(--on-accent);border:0;border-radius:8px;padding:.6rem 1rem;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--accent)}
+.btn[disabled]{opacity:.5;cursor:default}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.nav{display:flex;align-items:center;flex-wrap:wrap;gap:.4rem 1.25rem;min-height:56px;padding-block:.5rem;max-width:1080px;margin:0 auto}
+.brand{font:700 1.05rem var(--display);display:flex;align-items:center;gap:.5rem;text-decoration:none}
+.brand i{width:18px;height:18px;display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.brand i b{background:var(--accent);border-radius:2px}.brand i b:nth-child(2){opacity:.55}.brand i b:nth-child(3){opacity:.3}
+.nav nav{margin-left:auto;display:flex;gap:1rem;overflow-x:auto;max-width:100%}
+.nav nav a{text-decoration:none;color:var(--muted);font-weight:500;font-size:.92rem;white-space:nowrap}
+.nav nav a:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;padding-block:3.5rem 3rem;align-items:center}
+.hero p.lead{color:var(--muted);font-size:1.15rem;max-width:34ch;margin-top:1.1rem}
+.hero .cta{display:flex;gap:.75rem;margin-top:1.6rem;flex-wrap:wrap}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.25rem}
+.glance{display:grid;gap:1rem}
+.glance-top{display:flex;gap:1rem;align-items:center}
+.ring{position:relative;width:84px;height:84px;flex:none}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:9}
+.ring .bg{stroke:var(--line)}.ring .fg{stroke:var(--accent);stroke-linecap:round}
+.ring span{position:absolute;inset:0;display:grid;place-items:center;font:500 .95rem var(--mono)}
+.next{background:var(--accent-soft);border-radius:10px;padding:.9rem 1rem;display:flex;justify-content:space-between;gap:1rem;align-items:center}
+.next small{display:block;color:var(--muted)}
+section{padding-block:3.5rem;border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;align-items:end}
+.sec-head p{color:var(--muted)}
+.why{margin-top:1.25rem;display:grid;gap:.5rem;font-size:.92rem;color:var(--muted)}
+.why li{padding-left:1rem;position:relative;list-style:none}
+.why li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;background:var(--accent);border-radius:1px}
+.cols{display:grid;grid-template-columns:1.15fr .85fr;gap:1.25rem}
+.cols>*{min-width:0}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
+.tile{--m:50;text-align:left;border:1px solid var(--line);border-radius:10px;padding:.7rem .7rem .6rem;min-height:104px;display:flex;flex-direction:column;justify-content:space-between;gap:.5rem;
+  background:color-mix(in srgb,var(--accent) calc(var(--m)*.38%),var(--surface))}
+.tile[aria-pressed="true"]{outline:2px solid var(--accent);outline-offset:1px}
+.tile b{font-weight:600;font-size:.88rem;line-height:1.2}
+.tile .v{font:500 1.2rem var(--mono)}
+.tile .s{font-size:.72rem;color:var(--muted)}
+.band{height:5px;border-radius:3px;background:var(--line);position:relative;overflow:hidden}
+.band i{position:absolute;top:0;bottom:0;background:var(--ink);opacity:.35;border-radius:3px}
+.detail h3{font-size:1.35rem}
+.detail .big{font:500 2.6rem var(--mono);letter-spacing:-.02em}
+.detail dl{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1rem;margin:1rem 0;font-size:.92rem}
+.detail dt{color:var(--muted)}.detail dd{margin:0}
+.chart{width:100%;height:auto;display:block}
+.chart text{font:400 11px var(--mono);fill:var(--muted)}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .line{fill:none;stroke:var(--accent);stroke-width:2.5}
+.chart .fc{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-dasharray:2 6;stroke-linecap:round}
+.chart .cb{fill:var(--accent);opacity:.14}
+.chart .dot{fill:var(--accent);stroke:var(--surface);stroke-width:2}
+.chart .ev{stroke:var(--warn);stroke-dasharray:3 4}
+.chart .evt{fill:var(--warn)}
+.toggle{display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:var(--muted)}
+.toggle input{width:18px;height:18px;accent-color:var(--accent)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:.75rem}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:transparent;padding:.5rem .9rem;font-weight:500;font-size:.9rem}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.q{font:500 1.9rem var(--mono);margin:.75rem 0 1rem}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.opts button{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:.8rem;font:500 1.1rem var(--mono)}
+.opts button:hover:not([disabled]){border-color:var(--accent)}
+.opts button.ok{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--surface))}
+.opts button.no{border-color:var(--crit);background:color-mix(in srgb,var(--crit) 12%,var(--surface))}
+.levels{display:flex;gap:4px;align-items:flex-end;height:30px}
+.levels i{width:14px;background:var(--line);border-radius:2px}
+.levels i.on{background:var(--accent)}
+.note{background:var(--accent-soft);border-radius:10px;padding:.7rem .9rem;font-size:.92rem;min-height:3.2rem}
+.zone{position:relative;height:10px;background:var(--line);border-radius:5px;margin:.5rem 0 .25rem}
+.zone .t{position:absolute;left:70%;width:10%;top:0;bottom:0;background:color-mix(in srgb,var(--good) 40%,var(--line))}
+.zone .p{position:absolute;top:-4px;width:4px;height:18px;background:var(--ink);border-radius:2px;transform:translateX(-50%);transition:left .3s}
+.log{list-style:none;margin:0;padding:0;display:grid;gap:.4rem;font-size:.85rem;color:var(--muted)}
+.log li{display:flex;gap:.6rem}.log li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:.55em;flex:none}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-block:1rem}
+.stat{border:1px solid var(--line);border-radius:10px;padding:.7rem}
+.stat b{display:block;font:500 1.5rem var(--mono)}
+.stat span{font-size:.78rem;color:var(--muted)}
+.xp b{color:var(--gold)}
+[data-int="quiet"] .xp,[data-int="quiet"] .badges-box,[data-int="quiet"] .board{display:none}
+[data-int="balanced"] .board{display:none}
+.actions{display:grid;gap:.5rem}
+.actions button{text-align:left;display:flex;justify-content:space-between;gap:1rem;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:.7rem .9rem}
+.actions button:hover{border-color:var(--accent)}
+.actions small{color:var(--muted)}
+.weeks{display:flex;gap:6px;margin:.5rem 0}
+.weeks i{width:20px;height:20px;border-radius:5px;background:var(--accent)}
+.weeks i.rest{background:transparent;border:2px dashed var(--muted)}
+.weeks i.now{background:var(--gold)}
+.badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);background:var(--gold-soft);border-radius:999px;padding:.2rem .7rem;font-size:.8rem;font-weight:600;margin:.2rem .3rem 0 0}
+.cue{background:var(--gold-soft);border:1px solid var(--gold);border-radius:12px;padding:1rem}
+.cue h3{margin-bottom:.35rem}
+.board ol{margin:.5rem 0 0;padding-left:1.1rem;display:grid;gap:.25rem;font-size:.92rem}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:620px}
+.tbl th{text-align:left;font:500 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.6rem .7rem;border-bottom:1px solid var(--line)}
+.tbl td{padding:.75rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+.pill{display:inline-block;border-radius:999px;padding:.15rem .65rem;font-size:.78rem;font-weight:600;border:1px solid}
+.pill.High{color:var(--crit);border-color:var(--crit)}.pill.Medium{color:var(--warn);border-color:var(--warn)}.pill.Low{color:var(--good);border-color:var(--good)}
+.scroll{overflow-x:auto}
+.foot{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;padding-block:3rem}
+.foot h3{margin-bottom:.4rem}.foot p{color:var(--muted);font-size:.93rem}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:.6rem 1rem;border-radius:9px;font-size:.9rem;opacity:0;pointer-events:none;transition:.25s;z-index:40;max-width:calc(100vw - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.example{font:400 .75rem var(--mono);color:var(--muted)}
+@media (max-width:860px){
+  .hero,.sec-head,.cols,.foot{grid-template-columns:1fr}
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:1fr 1fr 1fr}
+  .opts{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="top"><div class="nav">
+  <a class="brand" href="#top"><i><b></b><b></b><b></b><b></b></i>EdTech Learning Intelligence Platform</a>
+  <nav aria-label="Sections"><a href="#progress">Progress</a><a href="#adaptive">Adaptive path</a><a href="#balance">Rewards</a><a href="#teacher">Teacher view</a></nav>
+</div></header>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <div>
+      <p class="label">Learning intelligence for grades 6 to 8</p>
+      <h1 style="margin-top:.9rem">See what you know. Know what to do next.</h1>
+      <p class="lead">The platform tracks how you practise, predicts where you may get stuck, and adjusts each session so you learn more in less time.</p>
+      <div class="cta"><a class="btn" href="#progress" style="text-decoration:none">Try the prototype</a><a class="btn ghost" href="#teacher" style="text-decoration:none">See the teacher view</a></div>
+    </div>
+    <div class="card glance" aria-label="Home glance example">
+      <div class="label">Your week · example learner</div>
+      <div class="glance-top">
+        <div class="ring"><svg viewBox="0 0 84 84"><circle class="bg" cx="42" cy="42" r="36"/><circle class="fg" cx="42" cy="42" r="36" stroke-dasharray="226" stroke-dashoffset="68"/></svg><span>3/4</span></div>
+        <div><h3>3 of 4 practice sessions done</h3><p style="color:var(--muted);font-size:.92rem">Fractions: solid. Decimals: needs one more short set.</p></div>
+      </div>
+      <div class="next"><div><b>Next best step</b><small>Decimals refresh · 5 min</small></div><button class="btn" data-toast="Added to today">Start</button></div>
+    </div>
+  </div>
+
+  <section id="progress">
+    <div class="sec-head">
+      <div><p class="label">Challenge 1</p><h2 style="margin-top:.6rem">Progress that shows mastery, not hours</h2></div>
+      <div><p>Each tile is one skill. Tap a tile to see how sure the system is and what changed.</p>
+      <ul class="why" style="padding:0"><li>Mastery bar plus a confidence range, so a guess never looks like a fact.</li><li>Every status has a word as well as a colour.</li></ul></div>
+    </div>
+    <div class="cols">
+      <div class="card">
+        <div class="row"><h3>Skill map · Maths 7</h3><span class="example">Example data</span></div>
+        <div class="tiles" id="tiles" role="group" aria-label="Skills"></div>
+      </div>
+      <div class="card detail" id="detail" aria-live="polite"></div>
+    </div>
+    <div class="card" style="margin-top:1.25rem">
+      <div class="row"><div><h3>Average mastery over time</h3><p class="example">Shaded band shows the range the system believes. Example data.</p></div>
+      <label class="toggle" for="fc"><input type="checkbox" id="fc" checked> Show forecast, “if you keep this pace”</label></div>
+      <svg class="chart" id="trend" viewBox="0 0 640 250" role="img" aria-label="Average mastery rose from 38 to 61 percent over 8 weeks, with a forecast of 68 percent by week 11"></svg>
+    </div>
+  </section>
+
+  <section id="adaptive">
+    <div class="sec-head">
+      <div><p class="label">Challenge 2</p><h2 style="margin-top:.6rem">Adaptation that explains itself</h2></div>
+      <div><p>Answer a few fractions questions. The path changes, says why, and you can overrule it.</p>
+      <ul class="why" style="padding:0"><li>One plain sentence after every change.</li><li>Easier, harder and “I know this” are always available.</li></ul></div>
+    </div>
+    <div class="cols">
+      <div class="card">
+        <div class="row"><span class="label">Fractions practice</span><div class="levels" id="levels" aria-label="Difficulty level"></div></div>
+        <div class="q" id="q"></div>
+        <div class="opts" id="opts"></div>
+        <div class="note" id="note" style="margin-top:1rem" aria-live="polite">Pick an answer to begin.</div>
+        <div class="row" style="margin:1rem 0 0">
+          <div class="seg" role="group" aria-label="Override difficulty"><button id="easier" aria-pressed="false">Easier</button><button id="harder" aria-pressed="false">Harder</button></div>
+          <button class="btn ghost" id="skip">I know this, test me</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Staying in the learning zone</h3>
+        <p style="color:var(--muted);font-size:.92rem;margin-top:.35rem">The aim is about 70 to 80 percent correct. Hard enough to stretch you, easy enough to continue.</p>
+        <div class="zone" aria-hidden="true"><div class="t"></div><div class="p" id="pin" style="left:50%"></div></div>
+        <div class="row" style="margin:0 0 1rem"><span class="example">0%</span><span class="mono" id="rate" style="font-size:.9rem">Last answers: none yet</span><span class="example">100%</span></div>
+        <div class="label" style="margin-bottom:.5rem">What changed and why</div>
+        <ul class="log" id="log"><li>Started at level 3 from your last session.</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="balance">
+    <div class="sec-head">
+      <div><p class="label">Challenge 3</p><h2 style="margin-top:.6rem">Game elements that never outrank learning</h2></div>
+      <div><p>Rewards pay out for mastery, delayed review and finished plans. Volume alone earns almost nothing.</p>
+      <ul class="why" style="padding:0"><li>Learners pick how playful the app feels.</li><li>Streaks count weeks and include rest days.</li></ul></div>
+    </div>
+    <div id="game" data-int="balanced">
+      <div class="row"><span class="label">Game intensity</span>
+        <div class="seg" role="group" aria-label="Game intensity"><button data-i="quiet" aria-pressed="false">Quiet</button><button data-i="balanced" aria-pressed="true">Balanced</button><button data-i="playful" aria-pressed="false">Playful</button></div></div>
+      <div class="cols">
+        <div class="card">
+          <h3>Try an activity</h3>
+          <div class="actions" style="margin-top:.8rem">
+            <button data-a="easy"><span>Do 10 easy problems<br><small>Volume, capped daily</small></span><span class="mono xp">+10 XP</span></button>
+            <button data-a="review"><span>Finish a delayed review<br><small>Recall after a gap</small></span><span class="mono xp">+40 XP</span></button>
+            <button data-a="master"><span>Master a new skill<br><small>Pass a mixed check</small></span><span class="mono xp">+80 XP</span></button>
+          </div>
+          <div class="stats">
+            <div class="stat xp"><b id="xp">0</b><span>XP</span></div>
+            <div class="stat"><b id="gain">0.0</b><span>Mastery points gained</span></div>
+            <div class="stat"><b id="mins">0</b><span>Minutes studied</span></div>
+          </div>
+          <p class="note" id="gnote" aria-live="polite">Try each activity and compare XP with mastery gained.</p>
+          <div class="badges-box" style="margin-top:.8rem"><span class="label">Badges</span><div id="badges"><span class="example">None yet. Badges mark mastery, not time spent.</span></div></div>
+        </div>
+        <div style="display:grid;gap:1.25rem;align-content:start">
+          <div class="card">
+            <h3>Weekly goal streak</h3>
+            <div class="weeks" aria-label="6 weeks completed, 2 rest weeks, current week"><i></i><i></i><i></i><i class="rest"></i><i></i><i></i><i class="now"></i></div>
+            <p style="color:var(--muted);font-size:.92rem">6 weeks counted. Rest weeks keep the streak alive, so a sick week does not erase progress.</p>
+          </div>
+          <div class="card board">
+            <h3>Personal best</h3>
+            <p style="color:var(--muted);font-size:.92rem">You are 2 skills ahead of your own pace. Compare with a small group only if you join one.</p>
+            <ol><li>You · 3 skills this month</li><li>Last month · 1 skill</li></ol>
+          </div>
+          <div class="card">
+            <h3>Healthy stopping cue</h3>
+            <p style="color:var(--muted);font-size:.92rem;margin-bottom:.8rem">After a set time the app ends on a high instead of offering one more round.</p>
+            <button class="btn ghost" id="sim">Simulate 45 minutes of study</button>
+            <div class="cue" id="cue" hidden style="margin-top:.9rem"><h3>Good session. Time for a break?</h3><p style="font-size:.92rem">You reviewed 2 skills. Your gains stick better after a rest.</p><div style="display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap"><button class="btn" id="stop">Take a break</button><button class="btn ghost" id="more">10 more minutes</button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="teacher">
+    <div class="sec-head">
+      <div><p class="label">For teachers</p><h2 style="margin-top:.6rem">An early-warning list with reasons</h2></div>
+      <div><p>Predictions show up here with their drivers and a suggested action. Learners never see a risk score.</p></div>
+    </div>
+    <div class="card">
+      <div class="row"><h3>Class 7B · next 2 weeks</h3>
+        <div class="seg" role="group" aria-label="Sort"><button id="s-risk" aria-pressed="true">By risk</button><button id="s-act" aria-pressed="false">By last active</button></div></div>
+      <div class="scroll"><table class="tbl"><thead><tr><th>Learner</th><th>Risk</th><th>Main drivers</th><th>Last active</th><th>Suggested action</th></tr></thead><tbody id="rows"></tbody></table></div>
+      <p class="example" style="margin-top:.6rem">Example learners and data.</p>
+    </div>
+  </section>
+
+  <div class="foot" style="border-top:1px solid var(--line)">
+    <div><h3>Track</h3><p>Every attempt, hint, pause and session gap becomes an event, collected only for a stated teaching purpose.</p></div>
+    <div><h3>Predict</h3><p>Three models estimate mastery, next-test outcome and drop-off risk, each with its top reasons and an honest range.</p></div>
+    <div><h3>Adapt</h3><p>Difficulty, order and reminders change in small, reversible steps, and the learner can always take over.</p></div>
+  </div>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2000)}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-toast]');if(b)toast(b.dataset.toast)});
+
+/* 1. Progress */
+const skills=[
+ {n:'Fractions',m:82,c:6,last:'2 days ago',why:'Strong and steady. Review is due in 6 days.'},
+ {n:'Decimals',m:54,c:14,last:'9 days ago',why:'Nine days since the last practice. One short set restores it.'},
+ {n:'Ratios',m:67,c:10,last:'4 days ago',why:'Improving. Two more mixed problems should confirm it.'},
+ {n:'Percentages',m:41,c:18,last:'12 days ago',why:'Few attempts so far, so the estimate is still wide.'},
+ {n:'Geometry basics',m:76,c:8,last:'3 days ago',why:'Solid. The angle puzzles are a good stretch.'},
+ {n:'Intro algebra',m:33,c:20,last:'Not started',why:'Unlocks after Ratios reaches 70%.'},
+ {n:'Word problems',m:58,c:12,last:'5 days ago',why:'Reading is fine. Setting up the equation costs most points.'},
+ {n:'Data and graphs',m:71,c:9,last:'6 days ago',why:'Steady. Review is due in 3 days.'}];
+const status=m=>m>=75?'Solid':m>=55?'Building':'Needs practice';
+let sel=1;
+function drawTiles(){
+  $('#tiles').innerHTML=skills.map((s,i)=>`<button class="tile" style="--m:${s.m}" aria-pressed="${i===sel}" data-i="${i}">
+   <b>${s.n}</b><div><div class="v">${s.m}%</div><div class="band"><i style="left:${s.m-s.c}%;width:${s.c*2}%"></i></div><div class="s" style="margin-top:.3rem">${status(s.m)}</div></div></button>`).join('');
+  const s=skills[sel];
+  $('#detail').innerHTML=`<div class="label">Selected skill</div><h3 style="margin-top:.4rem">${s.n}</h3>
+   <div class="big">${s.m}%</div>
+   <dl><dt>Likely range</dt><dd class="mono">${Math.max(0,s.m-s.c)}–${Math.min(100,s.m+s.c)}%</dd><dt>Status</dt><dd>${status(s.m)}</dd><dt>Last practised</dt><dd>${s.last}</dd></dl>
+   <p style="color:var(--muted);margin-bottom:1rem">${s.why}</p><button class="btn" data-toast="Added to today: ${s.n}">Practise 5 min</button>`;
+}
+$('#tiles').addEventListener('click',e=>{const b=e.target.closest('.tile');if(b){sel=+b.dataset.i;drawTiles()}});
+drawTiles();
+
+function drawTrend(){
+  const act=[38,42,41,47,52,55,58,61],fc=[61,63,66,68],W=640,L=40,R=16,T=14,B=34,H=250;
+  const X=i=>L+i*(W-L-R)/10, Y=v=>T+(1-v/100)*(H-T-B);
+  const show=$('#fc').checked;
+  let g='';[0,25,50,75,100].forEach(v=>g+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${L-8}" y="${Y(v)+4}" text-anchor="end">${v}</text>`);
+  for(let i=0;i<11;i++)g+=`<text x="${X(i)}" y="${H-12}" text-anchor="middle">W${i+1}</text>`;
+  const pts=a=>a.map((v,i)=>[X(i),Y(v)]);
+  const aP=pts(act);
+  const half=[5,5,5,5,5,5,5,5,8,11,14];
+  const upper=act.map((v,i)=>[X(i),Y(v+half[i])]),lower=act.map((v,i)=>[X(i),Y(v-half[i])]).reverse();
+  let band=`<polygon class="cb" points="${[...upper,...lower].map(p=>p.join(',')).join(' ')}"/>`;
+  let fcs='';
+  if(show){
+    const fp=fc.map((v,i)=>[X(7+i),Y(v)]);
+    const u=fc.map((v,i)=>[X(7+i),Y(v+half[7+i])]),l=fc.map((v,i)=>[X(7+i),Y(v-half[7+i])]).reverse();
+    band+=`<polygon class="cb" points="${[...u,...l].map(p=>p.join(',')).join(' ')}"/>`;
+    fcs=`<path class="fc" d="M${fp.map(p=>p.join(',')).join('L')}"/><text x="${X(10)}" y="${Y(68)-18}" text-anchor="end">If you keep this pace</text>`;
+  }
+  const ev=`<line class="ev" x1="${X(2)}" x2="${X(2)}" y1="${T}" y2="${H-B}"/><text class="evt" x="${X(2)+6}" y="${T+10}">9-day gap</text>`;
+  $('#trend').innerHTML=g+band+ev+`<path class="line" d="M${aP.map(p=>p.join(',')).join('L')}"/>`+fcs+`<circle class="dot" cx="${aP[7][0]}" cy="${aP[7][1]}" r="5"/><text x="${aP[7][0]}" y="${aP[7][1]-12}" text-anchor="middle" style="fill:var(--ink)">61%</text>`;
+}
+$('#fc').addEventListener('change',drawTrend);drawTrend();
+
+/* 2. Adaptive */
+const bank={1:[['1/2 + 1/4',['3/4','2/6','1/6'],'3/4'],['1/3 + 1/3',['2/3','2/6','1/9'],'2/3']],
+2:[['2/3 + 1/6',['5/6','3/9','1/2'],'5/6'],['1/2 + 1/8',['5/8','2/10','1/4'],'5/8']],
+3:[['3/4 − 1/3',['5/12','2/1','1/6'],'5/12'],['5/6 − 1/4',['7/12','4/2','1/2'],'7/12']],
+4:[['1 2/3 + 3/4',['2 5/12','2 1/2','1 11/12'],'2 5/12'],['2 1/2 − 3/4',['1 3/4','1 1/4','2 1/4'],'1 3/4']],
+5:[['2/5 ÷ 4/15',['3/2','8/75','2/3'],'3/2'],['3/4 ÷ 3/8',['2','9/32','1/2'],'2']]};
+let lvl=3,streakOk=0,streakNo=0,hist=[],qi=0,cur,answered=false;
+const logEl=$('#log');
+function log(t){const li=document.createElement('li');li.textContent=t;logEl.prepend(li);while(logEl.children.length>5)logEl.lastChild.remove()}
+function drawLevels(){$('#levels').innerHTML=[1,2,3,4,5].map(n=>`<i class="${n<=lvl?'on':''}" style="height:${8+n*5}px"></i>`).join('')}
+function ask(){
+  const list=bank[lvl];cur=list[qi++%list.length];answered=false;
+  $('#q').textContent=cur[0]+' = ?';
+  const o=[...cur[1]].sort((a,b)=>(a+qi).length-(b+qi).length||a.localeCompare(b));
+  $('#opts').innerHTML=o.map(v=>`<button data-v="${v}">${v}</button>`).join('');
+  drawLevels();
+}
+function rate(){const l=hist.slice(-5);const p=l.length?Math.round(l.filter(Boolean).length/l.length*100):50;
+  $('#pin').style.left=p+'%';$('#rate').textContent=l.length?`Last ${l.length}: ${p}% correct`:'Last answers: none yet'}
+$('#opts').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b||answered)return;answered=true;
+  const ok=b.dataset.v===cur[2];hist.push(ok);
+  [...$('#opts').children].forEach(x=>{x.disabled=true;if(x.dataset.v===cur[2])x.classList.add('ok')});
+  if(!ok)b.classList.add('no');
+  let msg;
+  if(ok){streakOk++;streakNo=0;
+    if(streakOk>=2&&lvl<5){lvl++;streakOk=0;msg='Two in a row. Stepping it up to level '+lvl+'.';log('Raised to level '+lvl+' after 2 correct answers.')}
+    else msg=lvl===5?'Correct. You are at the top level.':'Correct. One more right answer and the level goes up.'}
+  else{streakNo++;streakOk=0;
+    if(streakNo>=2&&lvl>1){lvl--;streakNo=0;msg='Two misses. Let’s rebuild with an easier step, level '+lvl+'.';log('Lowered to level '+lvl+' after 2 misses.')}
+    else msg='Not quite. The answer is '+cur[2]+'. Same level next, with a fresh question.'}
+  $('#note').textContent=msg;rate();
+  setTimeout(ask,1600);
+});
+function setLevel(n,why){if(n<1||n>5)return toast('Already at the '+(n<1?'easiest':'hardest')+' level');lvl=n;streakOk=streakNo=0;log(why+' Now level '+lvl+'.');$('#note').textContent=why+' Level '+lvl+'.';ask()}
+$('#easier').onclick=()=>setLevel(lvl-1,'You chose easier.');
+$('#harder').onclick=()=>setLevel(lvl+1,'You chose harder.');
+$('#skip').onclick=()=>setLevel(4,'You said you know this, so here is a check.');
+ask();rate();
+
+/* 3. Balance */
+const G={xp:0,gain:0,mins:0,easy:0,badges:[]};
+function drawG(){$('#xp').textContent=G.xp;$('#gain').textContent=G.gain.toFixed(1);$('#mins').textContent=G.mins;
+  if(G.badges.length)$('#badges').innerHTML=G.badges.map(b=>`<span class="badge">${b}</span>`).join('')}
+$('#game').addEventListener('click',e=>{
+  const i=e.target.closest('[data-i]');
+  if(i){const v=i.dataset.i;$('#game').dataset.int=v;document.querySelectorAll('[data-i]').forEach(b=>b.setAttribute('aria-pressed',b===i));toast({quiet:'Quiet: only mastery is shown',balanced:'Balanced: goals and badges',playful:'Playful: adds personal-best board'}[v]);return}
+  const a=e.target.closest('[data-a]');if(!a)return;
+  const n=$('#gnote');
+  if(a.dataset.a==='easy'){
+    if(G.easy>=20){n.textContent='Daily cap for easy problems reached. Try a delayed review for real progress.';return}
+    G.easy+=10;G.xp+=10;G.gain+=0.5;G.mins+=6;n.textContent='Easy practice earns little XP and little mastery, and it stops paying after the daily cap.'}
+  if(a.dataset.a==='review'){G.xp+=40;G.gain+=3;G.mins+=8;n.textContent='Recalling after a gap pays four times more, because it is what makes learning stick.'}
+  if(a.dataset.a==='master'){G.xp+=80;G.gain+=6;G.mins+=12;if(!G.badges.includes('Decimals: passed after a gap'))G.badges.push('Decimals: passed after a gap');n.textContent='A new skill passed on a mixed check. Badge earned for mastery.'}
+  drawG();
+});
+$('#sim').onclick=()=>{$('#cue').hidden=false;$('#cue').scrollIntoView({block:'nearest',behavior:'smooth'})};
+$('#stop').onclick=()=>{$('#cue').hidden=true;toast('Session saved. See you tomorrow.')};
+$('#more').onclick=()=>{$('#cue').hidden=true;toast('Ten more minutes, then another gentle cue')};
+drawG();
+
+/* Teacher */
+const stu=[
+ {s:'Aarav M.',r:'High',d:'Practice gaps of 9+ days on Fractions; hints used on most attempts',a:11,act:'Send check-in'},
+ {s:'Diya K.',r:'Medium',d:'Accuracy fell 12 points over 2 weeks on Ratios',a:3,act:'Assign warm-up set'},
+ {s:'Rohan S.',r:'High',d:'Sessions dropped from 4 to 1 per week',a:8,act:'Message parent'},
+ {s:'Meera P.',r:'Low',d:'On pace. Review of Decimals due soon',a:1,act:'No action'},
+ {s:'Kabir T.',r:'Medium',d:'Skips videos, then misses practice questions',a:5,act:'Suggest worked examples'}];
+let by='risk';const rank={High:0,Medium:1,Low:2};const sent=new Set();
+function drawRows(){
+  const l=[...stu].sort((x,y)=>by==='risk'?rank[x.r]-rank[y.r]:x.a-y.a);
+  $('#rows').innerHTML=l.map(x=>`<tr><td><b>${x.s}</b></td><td><span class="pill ${x.r}">${x.r}</span></td><td>${x.d}</td><td class="mono">${x.a} days ago</td>
+  <td>${x.act==='No action'?'<span class="example">No action</span>':`<button class="btn ghost" data-s="${x.s}" ${sent.has(x.s)?'disabled':''}>${sent.has(x.s)?'Done':x.act}</button>`}</td></tr>`).join('')}
+$('#rows').addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(b){sent.add(b.dataset.s);toast('Marked done for '+b.dataset.s);drawRows()}});
+function sortBtn(k){by=k;$('#s-risk').setAttribute('aria-pressed',k==='risk');$('#s-act').setAttribute('aria-pressed',k==='act');drawRows()}
+$('#s-risk').onclick=()=>sortBtn('risk');$('#s-act').onclick=()=>sortBtn('act');drawRows();
+</script>
+
+</body></html>
